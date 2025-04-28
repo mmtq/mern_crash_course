@@ -1,5 +1,6 @@
 import { Container, VStack, Heading, Box, useColorModeValue, Button, Input } from '@chakra-ui/react'
 import { useState } from 'react'
+import { useProductStore } from '../store/product'
 
 const CreateProduct = () => {
     const [newProduct, setNewProduct] = useState({
@@ -7,6 +8,14 @@ const CreateProduct = () => {
         price: '',
         image: ""
     })
+
+    const {createProduct} =useProductStore()
+
+    const handleAddProduct = async() => {
+        const {success, message}=await createProduct(newProduct)
+        console.log(success, message)
+    }
+
     return (
         <Container>
             <VStack spacing={8}>
@@ -24,16 +33,7 @@ const CreateProduct = () => {
                         <Button
                             colorScheme="blue"
                             w="full"
-                            onClick={() => {
-                                console.log(newProduct);
-
-                                // After submitting, reset fields
-                                setNewProduct({
-                                    name: '',
-                                    price: '',
-                                    image: '',
-                                });
-                            }}
+                            onClick={handleAddProduct}
                         >
                             Create
                         </Button>
