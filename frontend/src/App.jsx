@@ -6,7 +6,7 @@ import { Box, useColorModeValue} from "@chakra-ui/react"
 function App() {
 
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.900")} minH={"100vh"}>
+    <Box bg={useColorModeValue("gray.100", "gray.900")} minH={"100vh"} width={"full"}>
      <Navbar/>
      <Routes>
       <Route path="/" element={<Home />} />
